@@ -1,0 +1,93 @@
+package com.app.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.entities.User;
+import com.app.repository.UserRepository;
+import com.app.services.UserService;
+
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")@RestController
+@RequestMapping("/User")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    // Insert a new user
+    @PostMapping("/insert")
+    public ResponseEntity<String> insertUser(@RequestBody User user) {
+        try {
+            user.setPassword(passwordEncoder.encode(user.getPassword())); // Hash password
+            User savedUser = userService.Insert(user);
+            return ResponseEntity.ok("User inserted successfully: " + savedUser);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("User registration failed: " + e.getMessage());
+        }
+    }
+
+    // Get all users
+    @GetMapping("/getAll")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> userList = userService.GetAll();
+        return ResponseEntity.ok(userList);
+    }
+
+    // Update user details
+    @PutMapping("/update")
+    public ResponseEntity<String> updateUser(@RequestBody User user) {
+        try {
+            User updatedUser = userService.Update(user);
+            return ResponseEntity.ok("User updated successfully: " + updatedUser);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("User update failed: " + e.getMessage());
+        }
+    }
+
+    // Delete a user by ID
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteUser(@RequestParam Long id) {
+        try {
+            userService.Delete(id);
+            return ResponseEntity.ok("User deleted successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                 .body("User deletion failed: " + e.getMessage());
+        }
+    }
+
+    // User login endpoint
+    @PostMapping("/login")
+    public ResponseEntity<String> loginUser(@RequestBody User loginRequest) {
+        Optional<User> userOptional = userRepository.findByEmail(loginRequest.getEmail());
+
+        if (userOptional.isPresent() && userOptional.get().getPassword().equals(loginRequest.getPassword())) {
+            return ResponseEntity.ok("Login successful! Welcome " + userOptional.get().getEmail());
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
+        }
+    }
+}

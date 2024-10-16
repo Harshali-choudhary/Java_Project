@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;com.app.controller.userController.java&apos; to &apos;UserController.java&apos;&#x0D;&#x0A;- Original project: &apos;spring_boot_backend_security_jwt_template&apos;&#x0D;&#x0A;- Original element: &apos;com.app.controller.userController.java&apos;&#x0D;&#x0A;- Renamed element: &apos;com.app.controller.UserController.java&apos;" description="Rename compilation unit &apos;userController.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.app.controller{userController.java" name="UserController.java" references="false" stamp="1727010554115" version="1.0"/>
+</session>
