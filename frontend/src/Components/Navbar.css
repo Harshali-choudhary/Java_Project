@@ -1,0 +1,63 @@
+/* src/components/Navbar.css */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center; /* Ensure links are centered */
+}
+
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Space between items */
+}
+
+.navbar-nav .nav-link {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Align search bar and button in one row */
+.d-flex {
+  display: flex;
+  align-items: center;  /* Vertically center align items */
+}
+
+.form-control {
+  align-items: center;
+  width: 200px;  /* Adjust width as needed */
+  margin-right: 10px;  /* Space between search input and button */
+}
+
+.btn-outline-success {
+  color: white;
+  border-color: white;
+  margin-left: 6rem;
+}
+
+.btn-outline-success:hover {
+  background-color: white;
+  color: #333;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+

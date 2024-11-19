@@ -1,0 +1,111 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* This ensures full height for centering */
+    overflow: hidden;
+}
+
+/* Content box on top of the background */
+.login-box {
+    position: relative;
+    z-index: 2;
+    width: 300px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+}
+
+.login-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+.login-button {
+    padding: 0.7rem;
+    font-size: 1rem;
+    background-color: #6c63ff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+.registration-link {
+    margin-left: 6rem;
+    margin-top: 4rem; /* Add space above the registration link */
+}
+
+.login-button:hover {
+    background-color: #5a54e0;
+}
+
+.error-message,
+.success-message {
+    font-size: 0.9rem;
+    margin: -0.5rem 0 1rem;
+    text-align: center;
+}
+
+.error-message {
+    color: #ff4d4d;
+}
+
+.success-message {
+    color: #4caf50;
+}
+
+@media (max-width: 400px) {
+    .login-box {
+        width: 90%;
+        padding: 1.5rem;
+    }
+}

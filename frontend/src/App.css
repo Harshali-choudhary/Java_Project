@@ -1,0 +1,38 @@
+/* General styling for the app */
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #080808;
+  color: white;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+/* Form control styling for input fields */
+input, button {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 16px;
+}
